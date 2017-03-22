@@ -10,7 +10,8 @@ NDK=${ANDROID_NDK}
 configure() {
   ARCH=$1; OUT=$2; CLANG=${3:-""};
 
-  TOOLCHAIN_ROOT=${TOOLS_ROOT}/${OUT}-android-toolchain
+  # TOOLCHAIN_ROOT=${HOME}/ndk-standalone-18-${OUT}
+  TOOLCHAIN_ROOT=/usr/local/ndk/ndk-standalone-18-${OUT}
 
   if [ "$ARCH" == "android" ]; then
     export ARCH_FLAGS="-mthumb"
