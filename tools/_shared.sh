@@ -10,7 +10,9 @@ NDK=${ANDROID_NDK}
 configure() {
   ARCH=$1; OUT=$2; CLANG=${3:-""};
 
-  TOOLCHAIN_ROOT=${TOOLS_ROOT}/${OUT}-android-toolchain
+  # TOOLCHAIN_ROOT=${TOOLS_ROOT}/${OUT}-android-toolchain
+  TOOLCHAIN_ROOT=/Users/cong/ndk-standalone-18-arm
+
 
   if [ "$ARCH" == "android" ]; then
     export ARCH_FLAGS="-mthumb"
@@ -33,7 +35,7 @@ configure() {
     export TOOL="i686-linux-android"
     NDK_FLAGS="--arch=x86"
   elif [ "$ARCH" == "android64" ]; then
-    export ARCH_FLAGS="-march=x86-64 -msse4.2 -mpopcnt -m64 -mtune=intel"
+    export ARCH_FLAGS="-march=x86-64 -msse4.2 -mpopcnt -mtune=intel"
     export ARCH_LINK=""
     export TOOL="x86_64-linux-android"
     NDK_FLAGS="--arch=x86_64"
@@ -58,6 +60,7 @@ configure() {
 
   export TOOLCHAIN_PATH=${TOOLCHAIN_ROOT}/bin
   export NDK_TOOLCHAIN_BASENAME=${TOOLCHAIN_PATH}/${TOOL}
+  # export NDK_TOOLCHAIN_BASENAME=/Users/cong/ndk-standalone-18-arm/bin/
   export SYSROOT=${TOOLCHAIN_ROOT}/sysroot
   export CROSS_SYSROOT=$SYSROOT
   if [ -z "${CLANG}" ]; then

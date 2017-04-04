@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 # Copyright 2016 leenjewel
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ configure_make() {
   if [[ $LIB_NAME != "openssl-1.1.*" ]]; then
     if [[ $ARCH == "android-armeabi" ]]; then
         ARCH="android-armv7"
-    elif [[ $ARCH == "android64" ]]; then 
+    elif [[ $ARCH == "android64" ]]; then
         ARCH="linux-x86_64 shared no-ssl2 no-ssl3 no-hw "
     elif [[ "$ARCH" == "android64-aarch64" ]]; then
         ARCH="android shared no-ssl2 no-ssl3 no-hw "
@@ -45,9 +45,10 @@ configure_make() {
 
   ./Configure $ARCH \
               --prefix=${LIB_DEST_DIR}/${ABI} \
-              --with-zlib-include=$SYSROOT/usr/include \
-              --with-zlib-lib=$SYSROOT/usr/lib \
-              zlib \
+              # --with-zlib-include=$SYSROOT/usr/include \
+              # --with-zlib-lib=$SYSROOT/usr/lib \
+              # zlib \
+              no-comp \
               no-asm \
               no-shared \
               no-unit-test
